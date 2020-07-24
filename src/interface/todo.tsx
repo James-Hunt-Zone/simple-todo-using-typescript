@@ -1,17 +1,10 @@
-export interface ITodo {
+export interface Todo {
   id: string;
   title: string;
   active: boolean;
 }
 
-export interface ITodoAction {
+export interface TodoAction {
   type: string;
-  payload?: ITodo | string;
-}
-
-export interface ITodoContextData {
-  state: ITodo[];
-  addTodo: Function;
-  updateTodoStatus: Function;
-  deleteTodo: Function;
+  payload?: Todo | string;
 }

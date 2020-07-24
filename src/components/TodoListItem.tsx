@@ -1,20 +1,17 @@
 import React, { useContext } from "react";
+import { Todo } from "../interface/todo";
+import { Context as TodoContext } from "../context/TodoContext";
+import { updateTodo, deleteTodo } from "../actions/todo";
 
-import { ITodo } from "../interface/todo";
-import { Context as TodoContext } from "../context/ItemContext";
-import { ITodoContextData } from "../interface/todo";
-
-const TodoListItem: React.FC<ITodo> = ({ id, title, active }) => {
-  const { updateTodoStatus, deleteTodo } = useContext(
-    TodoContext
-  ) as ITodoContextData;
+const TodoListItem: React.FC<Todo> = ({ id, title, active }) => {
+  const { dispatch } = useContext(TodoContext);
 
   const onToggleHandler = (event: React.MouseEvent) => {
-    updateTodoStatus(id);
+    dispatch(updateTodo(id));
   };
 
   const onDeleteHandler = (event: React.MouseEvent) => {
-    deleteTodo(id);
+    dispatch(deleteTodo(id));
   };
 
   return (

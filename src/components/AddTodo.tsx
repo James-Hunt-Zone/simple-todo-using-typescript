@@ -1,21 +1,22 @@
 import React, { FormEvent, useRef, useContext } from "react";
-
-import { Context as TodoContext } from "../context/ItemContext";
-import { ITodoContextData } from "../interface/todo";
+import { Context as TodoContext } from "../context/TodoContext";
+import { addTodo } from "../actions/todo";
 
 const AddTodo: React.FC = () => {
-  const { addTodo } = useContext(TodoContext) as ITodoContextData;
+  const { dispatch } = useContext(TodoContext);
 
   const textInputRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = (event: FormEvent) => {
     event.preventDefault();
 
-    addTodo({
-      id: new Date().getTime().toString(),
-      title: textInputRef.current!.value,
-      active: true,
-    });
+    dispatch(
+      addTodo({
+        id: new Date().getTime().toString(),
+        title: textInputRef.current!.value,
+        active: true,
+      })
+    );
   };
 
   return (

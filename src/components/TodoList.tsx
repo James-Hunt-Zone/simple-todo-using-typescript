@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
-
-import { Context as TodoContext } from "../context/ItemContext";
-import { ITodoContextData } from "../interface/todo";
+import { Context as TodoContext } from "../context/TodoContext";
 import TodoListItem from "./TodoListItem";
 
 const TodoList: React.FC = () => {
-  const { state: todoList } = useContext(TodoContext) as ITodoContextData;
+  const { state: todos } = useContext(TodoContext);
 
   return (
     <ul>
-      {todoList.map((item) => (
+      {todos.map((item) => (
         <TodoListItem
           key={item.id}
           id={item.id}
