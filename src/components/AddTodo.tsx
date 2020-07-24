@@ -10,6 +10,12 @@ const AddTodo: React.FC = () => {
   const submitHandler = (event: FormEvent) => {
     event.preventDefault();
 
+    const inputValue = textInputRef.current!.value;
+
+    if (inputValue.trim() === "") {
+      return;
+    }
+
     dispatch(
       addTodo({
         id: new Date().getTime().toString(),
@@ -17,6 +23,8 @@ const AddTodo: React.FC = () => {
         active: true,
       })
     );
+
+    textInputRef.current!.value = "";
   };
 
   return (
