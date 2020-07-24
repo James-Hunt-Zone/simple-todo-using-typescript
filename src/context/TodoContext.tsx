@@ -28,14 +28,12 @@ const reducer = (state: State, action: TodoAction): State => {
 
     case ACTION_UPDATE_TODO:
       return state.map((item) => {
-        if (item.id === action.payload) {
-          return {
-            ...item,
-            active: !item.active,
-          };
-        }
-
-        return item;
+        return item.id === action.payload
+          ? {
+              ...item,
+              active: !item.active,
+            }
+          : item;
       });
 
     case ACTION_DELETE_TODO:

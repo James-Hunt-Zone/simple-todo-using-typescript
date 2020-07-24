@@ -14,11 +14,12 @@ const TodoListItem: React.FC<Todo> = ({ id, title, active }) => {
     dispatch(deleteTodo(id));
   };
 
+  const style = {
+    ...(!active && { textDecoration: "line-through" }),
+  };
+
   return (
-    <li
-      onClick={onToggleHandler}
-      style={{ textDecoration: active ? "none" : "line-through" }}
-    >
+    <li onClick={onToggleHandler} style={style}>
       {title} - <button onClick={onDeleteHandler}>Delete</button>
     </li>
   );
