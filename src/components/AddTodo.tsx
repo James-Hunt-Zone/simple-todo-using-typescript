@@ -1,6 +1,30 @@
 import React, { FormEvent, useRef, useContext } from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Context as TodoContext } from "../context/TodoContext";
 import { addTodo } from "../actions/todo";
+
+const Form = styled.form`
+  padding: 1rem 0;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 1rem;
+`;
+
+const Heading = styled.h1`
+  padding: 0;
+  padding-bottom: 0.5rem;
+  margin: 0;
+`;
+
+const Input = styled.input`
+  font-size: 1.4rem;
+`;
+
+const Submit = styled.button`
+  background: none;
+  border: none;
+`;
 
 const AddTodo: React.FC = () => {
   const { dispatch } = useContext(TodoContext);
@@ -28,11 +52,17 @@ const AddTodo: React.FC = () => {
   };
 
   return (
-    <form>
-      <label htmlFor="add-todo">Add a todo</label>
-      <input type="text" id="add-todo" name="add-todo" ref={textInputRef} />
-      <input type="submit" value="Add" onClick={submitHandler} />
-    </form>
+    <Form>
+      <Heading>
+        <label htmlFor="add-todo">Add a todo</label>
+      </Heading>
+      <div>
+        <Input type="text" id="add-todo" name="add-todo" ref={textInputRef} />
+        <Submit type="button" onClick={submitHandler}>
+          <FontAwesomeIcon icon={faPlus} size="2x" />
+        </Submit>
+      </div>
+    </Form>
   );
 };
 
